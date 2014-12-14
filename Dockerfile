@@ -2,8 +2,10 @@ FROM ubuntu:14.04
  
 MAINTAINER Vishnu Nair "vishnu.nair66@gmail.com"
 
-RUN apt-get update && \
-    apt-get install -y haproxy && \
+RUN apt-get update && apt-get install -y software-properties-common python-software-properties && \
+    add-apt-repository ppa:vbernat/haproxy-1.5 && \
+    apt-get update && \
+    apt-get install -y haproxy socat && \
     rm -rf /var/lib/apt/lists/*
 
 ADD haproxy.cfg /etc/haproxy/haproxy.cfg
